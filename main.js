@@ -49,3 +49,30 @@ async function update(item) {
         console.log(err)
     });
 }
+
+async function createListItem() {
+
+    var list = $pnp.sp.web.lists.getByTitle('SolicitacaoEquipamentos');
+   
+    var eNome = $('#txtNome').val();
+    var eMatricula = $('#txtMatricula').val();
+    var eDepartamento = $('#txtDepartamento').val();
+    var eEquipamentos = $('#txtEquipamentos').val();
+
+    const i = list.items.add({
+    
+        'Nome': eNome,
+        'Martricula': eMatricula,
+        'Departamento' : eDepartamento,
+        'Equipamentos': eEquipamentos
+
+    }).then(function(res){
+
+        console.log(i);
+        $('#solicitacoes').empty();
+        getSolicitacaoEquipamentos();
+       
+    }).catch(function(err){
+        console.log(err)
+    });
+}
