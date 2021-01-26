@@ -17,3 +17,15 @@ async function getSolicitacaoEquipamentos() {
         console.log(err)
     });
 }
+
+async function deleteItem(item){
+
+    $pnp.sp.web.lists.getByTitle('SolicitacaoEquipamentos').items.getById(item).delete().then(function(res){
+        
+        $('#solicitacoes').empty();
+        getSolicitacaoEquipamentos();
+    
+    }).catch(function(err){
+        console.log(err)
+    });
+}
