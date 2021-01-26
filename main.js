@@ -29,3 +29,23 @@ async function deleteItem(item){
         console.log(err)
     });
 }
+
+async function update(item) {
+
+    var list = $pnp.sp.web.lists.getByTitle('SolicitacaoEquipamentos');
+   
+    var eNome = $('#txtNomeUpdate').val();
+    const i = await list.items.getById(item).update({
+       
+        'Nome': eNome
+        
+    }).then(function(res){
+
+        //console.log(i);
+        $('#solicitacoes').empty();
+        getSolicitacaoEquipamentos();
+       
+    }).catch(function(err){
+        console.log(err)
+    });
+}
